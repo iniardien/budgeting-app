@@ -9,3 +9,111 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+@layer base {
+    body {
+        @apply bg-slate-100 text-slate-900;
+    }
+}
+
+@layer components {
+    .budget-panel {
+        @apply rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-200/60;
+    }
+
+    .budget-card {
+        @apply rounded-[1.75rem] p-6 shadow-sm shadow-slate-200/60;
+    }
+
+    .budget-card-primary {
+        @apply bg-blue-600 text-white;
+    }
+
+    .budget-card-success {
+        @apply border border-emerald-200 bg-emerald-50 text-emerald-950;
+    }
+
+    .budget-card-danger {
+        @apply border border-rose-200 bg-rose-50 text-rose-950;
+    }
+
+    .budget-label {
+        @apply text-sm font-medium;
+    }
+
+    .budget-card-primary .budget-label,
+    .budget-card-primary .budget-meta {
+        @apply text-blue-100;
+    }
+
+    .budget-card-success .budget-label,
+    .budget-card-success .budget-meta {
+        @apply text-emerald-700;
+    }
+
+    .budget-card-danger .budget-label,
+    .budget-card-danger .budget-meta {
+        @apply text-rose-700;
+    }
+
+    .budget-amount {
+        @apply mt-3 text-3xl font-bold tracking-tight;
+    }
+
+    .budget-meta {
+        @apply mt-3 text-sm;
+    }
+
+    .budget-pill {
+        @apply inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-500;
+    }
+
+    .budget-badge {
+        @apply inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold;
+    }
+
+    .budget-badge-success {
+        @apply bg-emerald-100 text-emerald-700;
+    }
+
+    .budget-badge-warn {
+        @apply bg-amber-100 text-amber-700;
+    }
+
+    .budget-badge-danger {
+        @apply bg-rose-100 text-rose-700;
+    }
+
+    .budget-button {
+        @apply inline-flex items-center justify-center rounded-2xl px-5 py-3 text-sm font-semibold transition focus:outline-none;
+    }
+
+    .budget-button-primary {
+        @apply bg-blue-600 text-white shadow-sm hover:bg-blue-700;
+    }
+
+    .budget-button-secondary {
+        @apply border border-slate-200 bg-white text-slate-700 hover:bg-slate-50;
+    }
+
+    .budget-button-danger {
+        @apply bg-rose-600 text-white shadow-sm hover:bg-rose-700;
+    }
+
+    .budget-field {
+        @apply block text-sm font-medium text-slate-700;
+    }
+
+    .budget-field select,
+    .budget-field input {
+        @apply mt-2 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-blue-300 focus:ring-2 focus:ring-blue-100;
+    }
+
+    .budget-progress-track {
+        @apply h-2.5 overflow-hidden rounded-full bg-slate-200;
+    }
+
+    .budget-progress-fill {
+        @apply h-full rounded-full;
+    }
+}
