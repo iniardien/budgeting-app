@@ -2,11 +2,15 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class BudgetPagesTest extends TestCase
 {
+    use RefreshDatabase;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -28,7 +32,7 @@ class BudgetPagesTest extends TestCase
     #[DataProvider('pageProvider')]
     public function test_budget_pages_render(string $uri, string $title, string $copy): void
     {
-        $response = $this->get($uri);
+        $response = $this->actingAs(User::factory()->create())->get($uri);
 
         $response->assertOk();
         $response->assertSee('Budget');
