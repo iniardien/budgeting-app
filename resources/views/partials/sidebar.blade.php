@@ -1,8 +1,9 @@
 @php
     $items = [
         'dashboard' => ['label' => 'Dashboard', 'route' => 'dashboard', 'short' => 'DB'],
+        'categories' => ['label' => 'Categories', 'route' => 'categories.index', 'short' => 'CT'],
         'transactions' => ['label' => 'Transactions', 'route' => 'transactions', 'short' => 'TR'],
-        'budgets' => ['label' => 'Budgets', 'route' => 'budgets', 'short' => 'BG'],
+        'budgets' => ['label' => 'Budgets', 'route' => 'budgets.index', 'short' => 'BG'],
         'reports' => ['label' => 'Reports', 'route' => 'reports', 'short' => 'RP'],
         'settings' => ['label' => 'Settings', 'route' => 'settings', 'short' => 'ST'],
     ];
@@ -32,8 +33,15 @@
         @endforeach
     </nav>
 
-    <div class="space-y-1 border-t border-slate-200 px-6 py-5 text-sm text-slate-500">
-        <p class="font-medium text-slate-700">Static UI Preview</p>
-        <p>Blade + Tailwind conversion from v0.dev.</p>
+    <div class="space-y-4 border-t border-slate-200 px-6 py-5">
+        <div class="space-y-1 text-sm text-slate-500">
+            <p class="font-medium text-slate-700">{{ auth()->user()->name }}</p>
+            <p>{{ auth()->user()->email }}</p>
+        </div>
+
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="budget-button budget-button-danger w-full">Logout</button>
+        </form>
     </div>
 </aside>

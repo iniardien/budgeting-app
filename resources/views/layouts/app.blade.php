@@ -16,6 +16,14 @@
             @include('partials.mobile-header')
 
             <main class="flex-1">
+                @if (session('status'))
+                    <div class="mx-auto max-w-7xl px-4 pt-6 md:px-8">
+                        <div class="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
+                            {{ session('status') }}
+                        </div>
+                    </div>
+                @endif
+
                 @yield('content')
             </main>
         </div>

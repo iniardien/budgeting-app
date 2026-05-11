@@ -31,12 +31,13 @@
         <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
                 <h1 class="text-3xl font-bold text-slate-900">Dashboard</h1>
-                <p class="mt-1 text-sm text-slate-500">Welcome back! Here's your financial overview.</p>
+                <p class="mt-1 text-sm text-slate-500">Welcome back, {{ auth()->user()->name }}! Here's your financial overview.</p>
             </div>
 
-            <div class="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-500 shadow-sm">
-                Updated for static Laravel preview
-            </div>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="budget-button budget-button-danger">Logout</button>
+            </form>
         </div>
 
         <div class="grid gap-4 md:grid-cols-3">
