@@ -2,7 +2,7 @@
     $items = [
         'dashboard' => ['label' => 'Dashboard', 'route' => 'dashboard', 'short' => 'DB'],
         'categories' => ['label' => 'Categories', 'route' => 'categories.index', 'short' => 'CT'],
-        'transactions' => ['label' => 'Transactions', 'route' => 'transactions', 'short' => 'TR'],
+        'transactions' => ['label' => 'Transactions', 'route' => 'transactions.index', 'short' => 'TR'],
         'budgets' => ['label' => 'Budgets', 'route' => 'budgets.index', 'short' => 'BG'],
         'reports' => ['label' => 'Reports', 'route' => 'reports', 'short' => 'RP'],
         'settings' => ['label' => 'Settings', 'route' => 'settings', 'short' => 'ST'],

@@ -65,5 +65,34 @@ class DatabaseSeeder extends Seeder
                 );
             }
         }
+
+        foreach ([
+            ['category' => 'Salary', 'type' => 'income', 'amount' => 7000000, 'date' => now()->startOfMonth()->addDays(1)->toDateString(), 'description' => 'Gaji bulanan'],
+            ['category' => 'Freelance', 'type' => 'income', 'amount' => 1500000, 'date' => now()->startOfMonth()->addDays(6)->toDateString(), 'description' => 'Project landing page'],
+            ['category' => 'Groceries', 'type' => 'expense', 'amount' => 250000, 'date' => now()->startOfMonth()->addDays(3)->toDateString(), 'description' => 'Belanja mingguan'],
+            ['category' => 'Transport', 'type' => 'expense', 'amount' => 90000, 'date' => now()->startOfMonth()->addDays(4)->toDateString(), 'description' => 'Transport kantor'],
+            ['category' => 'Utilities', 'type' => 'expense', 'amount' => 300000, 'date' => now()->startOfMonth()->addDays(8)->toDateString(), 'description' => 'Tagihan bulanan'],
+            ['category' => 'Dining', 'type' => 'expense', 'amount' => 175000, 'date' => now()->startOfMonth()->addDays(9)->toDateString(), 'description' => 'Makan bersama teman'],
+        ] as $transaction) {
+            $category = Category::query()
+                ->where('user_id', $demoUser->id)
+                ->where('name', $transaction['category'])
+                ->where('type', $transaction['type'])
+                ->first();
+
+            if ($category) {
+                $demoUser->transactions()->updateOrCreate(
+                    [
+                        'category_id' => $category->id,
+                        'date' => $transaction['date'],
+                        'description' => $transaction['description'],
+                    ],
+                    [
+                        'type' => $transaction['type'],
+                        'amount' => $transaction['amount'],
+                    ],
+                );
+            }
+        }
     }
 }
