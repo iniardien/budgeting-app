@@ -21,7 +21,7 @@ class BudgetPagesTest extends TestCase
     public static function pageProvider(): array
     {
         return [
-            'dashboard' => ['/', 'Dashboard', "Welcome back! Here's your financial overview."],
+            'dashboard' => ['/', 'Dashboard', "Here's your financial overview."],
             'transactions' => ['/transactions', 'Transactions', 'Manage your income and expenses'],
             'budgets' => ['/budgets', 'Budgets', 'Set and manage your spending limits'],
             'reports' => ['/reports', 'Reports', 'Analyze your financial trends and patterns'],

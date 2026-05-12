@@ -7,13 +7,16 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
-use Illuminate\Validation\ValidationException;
 
 class AuthenticatedSessionController extends Controller
 {
     public function create(): View
     {
-        return view('auth.login');
+        $authMode = old('auth_mode', 'login');
+
+        return view('auth.login', [
+            'authMode' => in_array($authMode, ['login', 'register'], true) ? $authMode : 'login',
+        ]);
     }
 
     public function store(Request $request): RedirectResponse
@@ -26,8 +29,12 @@ class AuthenticatedSessionController extends Controller
         $remember = $request->boolean('remember');
 
         if (! Auth::attempt($credentials, $remember)) {
-            throw ValidationException::withMessages([
+            return back()->withErrors([
                 'email' => 'Email atau password tidak valid.',
+            ])->withInput([
+                'email' => $request->string('email')->toString(),
+                'remember' => $remember,
+                'auth_mode' => 'login',
             ]);
         }
 
