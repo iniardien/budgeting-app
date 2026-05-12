@@ -109,6 +109,22 @@
         @apply mt-2 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-blue-300 focus:ring-2 focus:ring-blue-100;
     }
 
+    .budget-auth-switch {
+        @apply mt-6 grid grid-cols-2 rounded-2xl bg-slate-100 p-1;
+    }
+
+    .budget-auth-switch-button {
+        @apply rounded-[1rem] px-4 py-3 text-sm font-semibold text-slate-500 transition;
+    }
+
+    .budget-auth-switch-button-active {
+        @apply bg-white text-slate-900 shadow-sm;
+    }
+
+    .budget-auth-copy {
+        @apply mt-2 text-sm leading-6 text-slate-500;
+    }
+
     .budget-progress-track {
         @apply h-2.5 overflow-hidden rounded-full bg-slate-200;
     }
