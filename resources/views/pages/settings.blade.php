@@ -10,46 +10,77 @@
             <p class="mt-1 text-sm text-slate-500">Manage your account preferences.</p>
         </div>
 
+        @if (session('status'))
+            <div class="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
+                {{ session('status') }}
+            </div>
+        @endif
+
         <section class="budget-panel space-y-5">
             <div>
-                <h2 class="text-xl font-semibold text-slate-900">Account Settings</h2>
-                <p class="mt-1 text-sm text-slate-500">Presentation-only controls for the first Blade pass.</p>
+                <h2 class="text-xl font-semibold text-slate-900">Profile Settings</h2>
+                <p class="mt-1 text-sm text-slate-500">Perbarui nama dan email akun Anda.</p>
             </div>
 
-            <div class="space-y-4">
+            <form method="POST" action="{{ route('settings.profile.update') }}" class="space-y-4">
+                @csrf
+                @method('PUT')
+
                 <label class="budget-field">
                     <span>Account Name</span>
-                    <input type="text" value="Ibrahim Personal Budget" readonly>
+                    <input type="text" name="name" value="{{ old('name', $user->name) }}" required>
+                    @error('name')
+                        <span class="mt-2 block text-sm text-rose-600">{{ $message }}</span>
+                    @enderror
                 </label>
 
                 <label class="budget-field">
-                    <span>Default Currency</span>
-                    <input type="text" value="USD" readonly>
+                    <span>Email</span>
+                    <input type="email" name="email" value="{{ old('email', $user->email) }}" required>
+                    @error('email')
+                        <span class="mt-2 block text-sm text-rose-600">{{ $message }}</span>
+                    @enderror
                 </label>
-            </div>
+
+                <button type="submit" class="budget-button budget-button-primary">Save Profile</button>
+            </form>
         </section>
 
         <section class="budget-panel space-y-5">
             <div>
-                <h2 class="text-xl font-semibold text-slate-900">Data Management</h2>
-                <p class="mt-1 text-sm text-slate-500">These controls are shown as static actions only.</p>
+                <h2 class="text-xl font-semibold text-slate-900">Password Settings</h2>
+                <p class="mt-1 text-sm text-slate-500">Ganti password akun Anda dengan verifikasi password saat ini.</p>
             </div>
 
-            <div class="rounded-3xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
-                Your data workflow will be wired later. This Blade version only previews the settings surface and action placement.
-            </div>
+            <form method="POST" action="{{ route('settings.password.update') }}" class="space-y-4">
+                @csrf
+                @method('PUT')
 
-            <div class="flex flex-wrap gap-3">
-                <button type="button" class="budget-button budget-button-secondary">Export Data</button>
-                <button type="button" class="budget-button budget-button-danger">Clear Data</button>
-            </div>
+                <label class="budget-field">
+                    <span>Current Password</span>
+                    <input type="password" name="current_password" required>
+                    @error('current_password')
+                        <span class="mt-2 block text-sm text-rose-600">{{ $message }}</span>
+                    @enderror
+                </label>
+
+                <label class="budget-field">
+                    <span>New Password</span>
+                    <input type="password" name="password" required>
+                    @error('password')
+                        <span class="mt-2 block text-sm text-rose-600">{{ $message }}</span>
+                    @enderror
+                </label>
+
+                <label class="budget-field">
+                    <span>Confirm New Password</span>
+                    <input type="password" name="password_confirmation" required>
+                </label>
+
+                <button type="submit" class="budget-button budget-button-primary">Update Password</button>
+            </form>
         </section>
 
-        <section class="budget-panel space-y-3">
-            <h2 class="text-xl font-semibold text-slate-900">About</h2>
-            <p class="text-sm text-slate-500">Budget Manager v1.0</p>
-            <p class="text-sm text-slate-600">A Laravel Blade conversion of the v0.dev budgeting dashboard with static multi-page navigation.</p>
-            <p class="text-xs uppercase tracking-[0.18em] text-slate-400">Blade + Tailwind preview</p>
-        </section>
+
     </section>
 @endsection
